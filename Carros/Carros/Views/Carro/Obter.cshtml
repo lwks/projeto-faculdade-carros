@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Carros.Models.Carro>
+
+<h1>Lista de Carros</h1>
+<p>
+    @Html.ActionLink("Adicionar", "Adicionar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    @Html.HiddenFor(model => item.Id)
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cor)
+        </td>
+        <td>
+            @Html.ActionLink("Alterar", "Alterar", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { onclick = "return confirm('Tem certeza que deseja excluir?');" })
+        </td>
+    </tr>
+}
+
+</table>
