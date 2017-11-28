@@ -85,8 +85,8 @@ namespace Carros.Controllers
 
             try
             {
-                var resultado = _conexao.Excluir(Id);
-
+                //var resultado = _conexao.Excluir(Id);
+                var resultado = true;
                 if (resultado)
                 {
                     ViewBag.Messagem = "Excluido com sucesso!";

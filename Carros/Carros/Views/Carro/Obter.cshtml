@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Carros.Models.Carro>
 
+
+
 <h1>Lista de Carros</h1>
 <p>
     @Html.ActionLink("Adicionar", "Adicionar")
@@ -32,10 +34,65 @@
         </td>
         <td>
             @Html.ActionLink("Alterar", "Alterar", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { onclick = "return confirm('Tem certeza que deseja excluir?');" })
+
+            <a href="javascript:AbrirModalExcluir('@item.Id')">Excluir</a>
+
+            @* @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { onclick = "return confirm('Tem certeza que deseja excluir?');" }) *@ |
+
+            @Html.ActionLink("Details", "Details", new { id=item.Id })
+            
         </td>
     </tr>
 }
 
 </table>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script src="https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js"></script>
+
+<script>
+
+    function AbrirModalExcluir(id) {
+        debugger;
+        var myModal = $('#myModal');
+        myModal.modal('show');
+        alert('chegou na funcao');
+    };
+
+    function ExcluirCarro(id) {
+        debugger;
+        $.ajax({
+            url: '@Url.Action("Excluir", "Carro")',
+            type: 'GET',
+            data: {
+                Id: id
+            },
+            success: function () {
+                window.location.reload();
+                alert('ahahahha');
+            }
+        });
+    };
+
+</script>

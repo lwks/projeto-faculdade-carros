@@ -28,5 +28,6 @@ C:\github\Carros\Carros\bin\System.Web.Webpages.Deployment.xml
 C:\github\Carros\Carros\bin\System.Web.Webpages.Razor.xml
 C:\github\Carros\Carros\bin\System.Web.Helpers.xml
 C:\github\Carros\Carros\bin\System.Web.Mvc.xml
+C:\github\Carros\Carros\obj\Debug\Carros.csprojResolveAssemblyReference.cache
 C:\github\Carros\Carros\obj\Debug\Carros.dll
 C:\github\Carros\Carros\obj\Debug\Carros.pdb
