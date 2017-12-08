@@ -10,10 +10,29 @@ namespace Carros.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Informe a categoria")]
-        public string Categoria { get; set; }
+        public Categoria Categoria { get; set; }
 
         [Required(ErrorMessage = "Informe a cor")]
-        public string Cor { get; set; }
+        public Cor Cor { get; set; }
 
+    }
+
+    public enum Categoria
+    {
+        Sedã,
+        Hatch,
+        Perua,
+        Coupé,
+        Picape,
+        Van
+    }
+
+    public enum Cor
+    {
+        Preto,
+        Branco,
+        Vermelho,
+        Verde, 
+        Vinho
     }
 }

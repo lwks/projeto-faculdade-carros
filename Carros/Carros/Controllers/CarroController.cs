@@ -1,29 +1,45 @@
 ﻿using Carros.Models;
 using Carros.Models.DbContext;
+using Carros.Utils;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Carros.Controllers
 {
+    [AutorizacaoFilter]
     public class CarroController : Controller
     {
-        private Conexao _conexao;
+        private CarroRepository _carroRepository;
 
+        /// <summary>
+        /// Metodo responsavel para obter todos os carros do banco
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Obter()
         {
-            _conexao = new Conexao();
-            var retorno = _conexao.Obter();
+            _carroRepository = new CarroRepository();
+            List<Carro> carrosViewModel = _carroRepository.Obter();
             ModelState.Clear();
 
-            return View(retorno);
+            return View(carrosViewModel);
         }
 
+        /// <summary>
+        /// Método responsavel para adicionar um carro no banco
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Adicionar()
         {
             return View(new Carro());
         }
 
+        /// <summary>
+        /// Método responsavel para adicionar um carro no banco
+        /// </summary>
+        /// <param name="carro">Objeto que sera adicionado</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Adicionar(Carro carro)
         {
@@ -31,11 +47,11 @@ namespace Carros.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _conexao = new Conexao();
+                    _carroRepository = new CarroRepository();
 
-                    if (_conexao.Adicionar(carro))
+                    if (_carroRepository.Adicionar(carro))
                     {
-                        ViewBag.Mensagem = "Cadastro com sucesso!";
+                        return RedirectToAction("Obter", "Carro");
                     }
                 }
 
@@ -50,25 +66,35 @@ namespace Carros.Controllers
 
         }
 
+        /// <summary>
+        /// Método responsavel para alterar um carro no banco
+        /// </summary>
+        /// <param name="Id">Objeto utilizado para tratar o método</param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Alterar(int Id)
         {
-            _conexao = new Conexao();
+            _carroRepository = new CarroRepository();
 
-            var resultado = _conexao.Obter().Find(carro => carro.Id == Id);
+            var resultado = _carroRepository.Obter().Find(carro => carro.Id == Id);
 
             return View(resultado);
         }
 
+        /// <summary>
+        /// Método responsavel para alterar o carro
+        /// </summary>
+        /// <param name="carro">Objeto utilizado para tratar método</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult Alterar(Carros.Models.Carro carro)
+        public ActionResult Alterar(Carro carro)
         {
-            _conexao = new Conexao();
+            _carroRepository = new CarroRepository();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var resultado = _conexao.Atualizar(carro);
+                    var resultado = _carroRepository.Atualizar(carro);
                 }
                 return RedirectToAction("Obter");
             }
@@ -79,14 +105,19 @@ namespace Carros.Controllers
 
         }
 
-        public ActionResult Excluir(int Id)
+        /// <summary>
+        /// Método responsavel para exclusão de carro
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Excluir(int id)
         {
-            _conexao = new Conexao();
+            _carroRepository = new CarroRepository();
 
             try
             {
-                //var resultado = _conexao.Excluir(Id);
-                var resultado = true;
+                var resultado = _carroRepository.Excluir(id);
+                
                 if (resultado)
                 {
                     ViewBag.Messagem = "Excluido com sucesso!";
@@ -97,7 +128,6 @@ namespace Carros.Controllers
             catch (Exception)
             {
                 return View("Obter");
-
             }
         }
     }

@@ -13,6 +13,7 @@ C:\github\Carros\Carros\bin\roslyn\VBCSCompiler.exe.config
 C:\github\Carros\Carros\bin\Carros.dll.config
 C:\github\Carros\Carros\bin\Carros.dll
 C:\github\Carros\Carros\bin\Carros.pdb
+C:\github\Carros\Carros\bin\Dapper.dll
 C:\github\Carros\Carros\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\github\Carros\Carros\bin\Microsoft.Web.Infrastructure.dll
 C:\github\Carros\Carros\bin\System.Web.Helpers.dll
@@ -21,6 +22,7 @@ C:\github\Carros\Carros\bin\System.Web.Razor.dll
 C:\github\Carros\Carros\bin\System.Web.Webpages.Deployment.dll
 C:\github\Carros\Carros\bin\System.Web.Webpages.dll
 C:\github\Carros\Carros\bin\System.Web.Webpages.Razor.dll
+C:\github\Carros\Carros\bin\Dapper.xml
 C:\github\Carros\Carros\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\github\Carros\Carros\bin\System.Web.Razor.xml
 C:\github\Carros\Carros\bin\System.Web.Webpages.xml
@@ -28,6 +30,6 @@ C:\github\Carros\Carros\bin\System.Web.Webpages.Deployment.xml
 C:\github\Carros\Carros\bin\System.Web.Webpages.Razor.xml
 C:\github\Carros\Carros\bin\System.Web.Helpers.xml
 C:\github\Carros\Carros\bin\System.Web.Mvc.xml
-C:\github\Carros\Carros\obj\Debug\Carros.csprojResolveAssemblyReference.cache
 C:\github\Carros\Carros\obj\Debug\Carros.dll
 C:\github\Carros\Carros\obj\Debug\Carros.pdb
+C:\github\Carros\Carros\obj\Debug\Carros.csprojResolveAssemblyReference.cache

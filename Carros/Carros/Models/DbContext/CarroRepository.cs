@@ -1,23 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace Carros.Models.DbContext
 {
-    public class Conexao
+    public class CarroRepository : RepositoryBase
     {
-        private SqlConnection _con;
-
-        private void Connection()
-        {
-            string stringCon = ConfigurationManager.ConnectionStrings["DbContext"].ToString();
-            
-            _con = new SqlConnection(stringCon);
-
-        }
-
         /// <summary>
         /// Método responsalvel por adicionar Carro.
         /// </summary>
@@ -66,6 +55,7 @@ namespace Carros.Models.DbContext
             {
                 command.CommandType = CommandType.StoredProcedure;
                 _con.Open();
+
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -74,8 +64,8 @@ namespace Carros.Models.DbContext
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         Nome = reader["Nome"].ToString(),
-                        Categoria = reader["Categoria"].ToString(),
-                        Cor = reader["Cor"].ToString()
+                        Categoria = (Categoria)Enum.Parse(typeof(Categoria), (reader["Categoria"].ToString())),
+                        Cor = (Cor)Enum.Parse(typeof(Cor), reader["Cor"].ToString())
                     });
                 }
             }

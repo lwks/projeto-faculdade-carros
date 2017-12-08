@@ -1,0 +1,49 @@
+﻿@model Carros.Models.Login
+
+@{
+    Layout = string.Empty;
+}
+
+<!DOCTYPE html>
+<head>
+    <title>Acesso - Login</title>
+    <link rel="stylesheet" href="~/Content/Login.css" />
+</head>
+
+<body class="bodyLogin">
+    <div class="slider_overlay"></div>
+    <div class="main-container">
+        <div class="row login">
+            @using (Html.BeginForm("AutenticarAcesso", "Login", FormMethod.Post, new { @class = "" }))
+            {
+                <h1>Login</h1>
+                <div class="header">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Digite o usuário e senha</p>
+                            @Html.ValidationMessage("login.Invalido", "", new { @class = "text-danger", @style = "color:red;" })
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "examplo@examplo.com.br", @class = "input col-md-12 col-sm-12 email" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", @style = "color:red"})
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @type = "password", @placeholder = "senha", @class = "input col-md-12 col-sm-12 password" } })
+                            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger", @style = "color:red" })
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <input type="submit" class="btn btn-primary btn-block btn-large" title="Acessar Sistema" data-toggle="tooltip" data-placement="bottom" value="Login" />
+                    <div class="clearfix"></div>
+                </div>
+            }
+        </div>
+    </div>
+</body>

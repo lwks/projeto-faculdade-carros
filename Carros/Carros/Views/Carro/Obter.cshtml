@@ -1,10 +1,24 @@
 ﻿@model IEnumerable<Carros.Models.Carro>
 
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#"></a></li>
+</ol>
 
+<div class="corpo preto">
+    <div class="conteudo">
+        <div class="slide">
+            <img class="slideImagem" src="~/Content/img/test.jpg" alt="imagem 1" title="imagem 1">
+            <img class="slideImagem" src="~/Content/img/test1.jpg" alt="imagem 2" title="imagem 2">
+            <img class="slideImagem" src="~/Content/img/test.jpg" alt="imagem 3" title="imagem 3">
+            <img class="slideImagem" src="~/Content/img/test1.jpg" alt="imagem 4" title="imagem 4">
+        </div>
+    </div>
+</div>
 
-<h1>Lista de Carros</h1>
+<h1>Catálogo de Carros</h1>
 <p>
-    @Html.ActionLink("Adicionar", "Adicionar")
+    @Html.ActionLink("Adicionar Veículo", "Adicionar")
 </p>
 <table class="table">
     <tr>
@@ -36,10 +50,6 @@
             @Html.ActionLink("Alterar", "Alterar", new { id = item.Id }) |
 
             <a href="javascript:AbrirModalExcluir('@item.Id')">Excluir</a>
-
-            @* @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { onclick = "return confirm('Tem certeza que deseja excluir?');" }) *@ |
-
-            @Html.ActionLink("Details", "Details", new { id=item.Id })
             
         </td>
     </tr>
@@ -47,25 +57,26 @@
 
 </table>
 
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="modalExcluir" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title">Atenção</h4>
             </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
+                <p>Tem certeza que deseja realizar essa operação?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="btn-excluir" type="button" class="btn btn-default" data-dismiss="modal">Sim</button>
             </div>
         </div>
     </div>
 </div>
 
+<link href="~/Content/Estilo.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/bootstrap.js"></script>
 <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
@@ -74,14 +85,13 @@
 <script>
 
     function AbrirModalExcluir(id) {
-        debugger;
-        var myModal = $('#myModal');
-        myModal.modal('show');
-        alert('chegou na funcao');
-    };
+        $('#modalExcluir').modal("show");
+        $('#btn-excluir').click(function () {
+            ExcluirCarro(id);
+        });
+    }
 
     function ExcluirCarro(id) {
-        debugger;
         $.ajax({
             url: '@Url.Action("Excluir", "Carro")',
             type: 'GET',
@@ -90,7 +100,6 @@
             },
             success: function () {
                 window.location.reload();
-                alert('ahahahha');
             }
         });
     };
